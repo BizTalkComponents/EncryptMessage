@@ -1,7 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizTalkComponents.PipelineComponents.EncryptMessage", "Src\EncryptMessage\BizTalkComponents.PipelineComponents.EncryptMessage.csproj", "{7FDBD96B-01F6-4CD7-AE1E-0F4C81300138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizTalkComponents.PipelineComponents.EncryptMessage.Tests.UnitTests", "Tests\UnitTests\BizTalkComponents.PipelineComponents.EncryptMessage.Tests.UnitTests.csproj", "{B8747853-15F6-4933-9EF2-D448FAE87636}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{1C0CA987-1849-42E8-8F7A-7E13F3A5AD21}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Build.proj = Build\Build.proj
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FDBD96B-01F6-4CD7-AE1E-0F4C81300138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDBD96B-01F6-4CD7-AE1E-0F4C81300138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDBD96B-01F6-4CD7-AE1E-0F4C81300138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDBD96B-01F6-4CD7-AE1E-0F4C81300138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8747853-15F6-4933-9EF2-D448FAE87636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8747853-15F6-4933-9EF2-D448FAE87636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8747853-15F6-4933-9EF2-D448FAE87636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8747853-15F6-4933-9EF2-D448FAE87636}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

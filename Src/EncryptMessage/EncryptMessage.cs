@@ -59,7 +59,7 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage
                 throw new ArgumentException("No encryption key could be found at the specified sso config.");
             }
 
-            var encryptionKey = Encoding.ASCII.GetBytes(encryptionKeyStr);
+            var encryptionKey = Convert.FromBase64String(encryptionKeyStr);
 
             var ms = new MemoryStream();
 

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BizTalkComponents.PipelineComponents.EncryptMessage</id>
+    <version>$version$</version>
+    <authors>Robin Hultman</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/BizTalkComponents/BizTalkComponents.PipelineComponents.EncryptMessage</projectUrl>
+    <description>PipelineComponent encrypts a message using AES algorithm.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>BizTalk</tags>
+  </metadata>
+</package>
