@@ -1,10 +1,10 @@
 ﻿namespace BizTalkComponents.Utils.LookupUtils
 {
-    public class SSOConfigReader
+    public class SSOLookupManager
     {
-        private readonly ISSOConfigRepository _ssoConfigRepository;
+        private readonly ISSOLookupRepository _ssoConfigRepository;
 
-        public SSOConfigReader(ISSOConfigRepository ssoConfigRepository)
+        public SSOLookupManager(ISSOLookupRepository ssoConfigRepository)
         {
             _ssoConfigRepository = ssoConfigRepository;
         }

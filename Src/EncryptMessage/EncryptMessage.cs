@@ -18,14 +18,14 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage
     public partial class EncryptMessage : IComponent, IBaseComponent,
                                         IPersistPropertyBag, IComponentUI
     {
-        private readonly ISSOConfigRepository _repository;
+        private readonly ISSOLookupRepository _repository;
 
         public EncryptMessage()
         {
-            _repository = new SSOConfigRepository();
+            _repository = new SSOLookupRepository();
         }
 
-        public EncryptMessage(ISSOConfigRepository repository)
+        public EncryptMessage(ISSOLookupRepository repository)
         {
             _repository = repository;
         }
@@ -52,7 +52,7 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage
                 throw new ArgumentException(errorMessage);
             }
 
-            var sr = new SSOConfigReader(_repository);
+            var sr = new SSOLookupManager(_repository);
             var encryptionKeyStr = sr.GetConfigValue(SSOConfigApplication, SSOConfigKey);
             if (string.IsNullOrEmpty(encryptionKeyStr))
             {

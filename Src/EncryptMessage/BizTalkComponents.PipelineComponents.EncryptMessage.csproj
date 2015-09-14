@@ -59,10 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BiztalkComponents.Utils.LookupUtils\ISSOConfigRepository.cs" />
+    <Compile Include="BiztalkComponents.Utils.LookupUtils\ISSOLookupRepository.cs" />
     <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOClientHelper.cs" />
-    <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOConfigReader.cs" />
-    <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOConfigRepository.cs" />
+    <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOLookupManager.cs" />
+    <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOLookupRepository.cs" />
     <Compile Include="BiztalkComponents.Utils\ContextExtensions.cs" />
     <Compile Include="BiztalkComponents.Utils\ContextProperties.cs" />
     <Compile Include="BiztalkComponents.Utils\ContextProperty.cs" />

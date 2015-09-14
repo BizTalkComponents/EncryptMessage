@@ -1,6 +1,6 @@
 ﻿namespace BizTalkComponents.Utils.LookupUtils
 {
-    public class SSOConfigRepository : ISSOConfigRepository
+    public class SSOLookupRepository : ISSOLookupRepository
     {
         public string Read(string application, string key)
         {

@@ -28,14 +28,12 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage.Tests.UnitTests
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestSuccessful()
         {
-            //var key = new byte[32];
-            //new RNGCryptoServiceProvider().GetBytes(key);
 
             var keyStr = "AAECAwQFBgcICQoLDA0ODw==";
 
-            var mock = new Mock<ISSOConfigRepository>();
+            var mock = new Mock<ISSOLookupRepository>();
             mock.Setup(r => r.Read("SSOApplication", "SSOKey")).Returns(keyStr);
 
             var pipeline = PipelineFactory.CreateEmptySendPipeline();
@@ -59,6 +57,27 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage.Tests.UnitTests
 
             re = re.Replace("\0", "");
             Assert.AreEqual("<test></test>",re);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestMissingSSOApplication()
+        {
+
+            var mock = new Mock<ISSOLookupRepository>();
+
+            var pipeline = PipelineFactory.CreateEmptySendPipeline();
+
+            var em = new EncryptMessage(mock.Object)
+            {
+                SSOConfigApplication = "SSOApplication",
+                SSOConfigKey = "SSOKey"
+            };
+
+            pipeline.AddComponent(em, PipelineStage.Encode);
+            var message = MessageHelper.Create("<test></test>");
+
+            var output = pipeline.Execute(message);
         }
 
         private Stream DecryptMessage(Stream outputStream, string keyString)
