@@ -3,9 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using BizTalkComponents.Utils.LookupUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using Winterdom.BizTalk.PipelineTesting;
 
 namespace BizTalkComponents.PipelineComponents.EncryptMessage.Tests.UnitTests
@@ -33,15 +31,11 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage.Tests.UnitTests
 
             var keyStr = "AAECAwQFBgcICQoLDA0ODw==";
 
-            var mock = new Mock<ISSOLookupRepository>();
-            mock.Setup(r => r.Read("SSOApplication", "SSOKey")).Returns(keyStr);
+          var pipeline = PipelineFactory.CreateEmptySendPipeline();
 
-            var pipeline = PipelineFactory.CreateEmptySendPipeline();
-
-            var em = new EncryptMessage(mock.Object)
+            var em = new EncryptMessage
             {
-                SSOConfigApplication = "SSOApplication",
-                SSOConfigKey = "SSOKey"
+               EncryptionKey = keyStr
             };
 
             pipeline.AddComponent(em, PipelineStage.Encode);
@@ -59,27 +53,7 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage.Tests.UnitTests
             Assert.AreEqual("<test></test>",re);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestMissingSSOApplication()
-        {
-
-            var mock = new Mock<ISSOLookupRepository>();
-
-            var pipeline = PipelineFactory.CreateEmptySendPipeline();
-
-            var em = new EncryptMessage(mock.Object)
-            {
-                SSOConfigApplication = "SSOApplication",
-                SSOConfigKey = "SSOKey"
-            };
-
-            pipeline.AddComponent(em, PipelineStage.Encode);
-            var message = MessageHelper.Create("<test></test>");
-
-            var output = pipeline.Execute(message);
-        }
-
+       
         private Stream DecryptMessage(Stream outputStream, string keyString)
         {
             var key = Convert.FromBase64String(keyString);
