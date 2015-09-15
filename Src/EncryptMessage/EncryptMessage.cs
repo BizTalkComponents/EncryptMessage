@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using BizTalkComponents.Utils;
-using BizTalkComponents.Utils.LookupUtils;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Message.Interop;
 using IComponent = Microsoft.BizTalk.Component.Interop.IComponent;
@@ -18,30 +17,13 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage
     public partial class EncryptMessage : IComponent, IBaseComponent,
                                         IPersistPropertyBag, IComponentUI
     {
-        private readonly ISSOLookupRepository _repository;
+        private const string EncryptionKeyPropertyName = "EncryptionKey";
 
-        public EncryptMessage()
-        {
-            _repository = new SSOLookupRepository();
-        }
-
-        public EncryptMessage(ISSOLookupRepository repository)
-        {
-            _repository = repository;
-        }
-
-        private const string SSOConfigApplicationPropertyName = "SSOConfigApplicationProperty";
-        private const string SSOConfigKeyPropertyName = "SSOConfigKey";
-
+      
         [RequiredRuntime]
-        [DisplayName("SSO Config Application")]
-        [Description("The name of the SSO Application to read the encryption key from.")]
-        public string SSOConfigApplication { get; set; }
-
-        [RequiredRuntime]
-        [DisplayName("SSO Config Key")]
-        [Description("The key of the SSO configuraiton property to read the encryption key from.")]
-        public string SSOConfigKey { get; set; }
+        [DisplayName("Encryption key")]
+        [Description("The key to use when encrypting. Should be in base64 format.")]
+        public string EncryptionKey { get; set; }
 
         public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)
         {
@@ -52,14 +34,7 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage
                 throw new ArgumentException(errorMessage);
             }
 
-            var sr = new SSOLookupManager(_repository);
-            var encryptionKeyStr = sr.GetConfigValue(SSOConfigApplication, SSOConfigKey);
-            if (string.IsNullOrEmpty(encryptionKeyStr))
-            {
-                throw new ArgumentException("No encryption key could be found at the specified sso config.");
-            }
-
-            var encryptionKey = Convert.FromBase64String(encryptionKeyStr);
+           var encryptionKey = Convert.FromBase64String(EncryptionKey);
 
             var ms = new MemoryStream();
 
@@ -90,14 +65,12 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage
 
         public void Load(IPropertyBag propertyBag, int errorLog)
         {
-            SSOConfigApplication = PropertyBagHelper.ReadPropertyBag<string>(propertyBag, SSOConfigApplicationPropertyName);
-            SSOConfigKey = PropertyBagHelper.ReadPropertyBag<string>(propertyBag, SSOConfigKeyPropertyName);
+            EncryptionKey = PropertyBagHelper.ReadPropertyBag<string>(propertyBag, EncryptionKeyPropertyName);
         }
 
         public void Save(IPropertyBag propertyBag, bool clearDirty, bool saveAllProperties)
         {
-            PropertyBagHelper.WritePropertyBag(propertyBag, SSOConfigApplicationPropertyName, SSOConfigApplication);
-            PropertyBagHelper.WritePropertyBag(propertyBag, SSOConfigKeyPropertyName, SSOConfigKey);
+            PropertyBagHelper.WritePropertyBag(propertyBag, EncryptionKeyPropertyName, EncryptionKey);
         }
     }
 }
