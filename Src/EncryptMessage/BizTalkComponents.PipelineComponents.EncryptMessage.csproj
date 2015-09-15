@@ -40,10 +40,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft BizTalk Server 2013\Microsoft.BizTalk.GlobalPropertySchemas.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.BizTalk.Interop.SSOClient, Version=7.0.2300.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Common Files\Enterprise Single Sign-On\Microsoft.BizTalk.Interop.SSOClient.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.BizTalk.Pipeline, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.BizTalk.Pipeline\3.0.1.0__31bf3856ad364e35\Microsoft.BizTalk.Pipeline.dll</HintPath>
@@ -59,10 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BiztalkComponents.Utils.LookupUtils\ISSOLookupRepository.cs" />
-    <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOClientHelper.cs" />
-    <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOLookupManager.cs" />
-    <Compile Include="BiztalkComponents.Utils.LookupUtils\SSOLookupRepository.cs" />
     <Compile Include="BiztalkComponents.Utils\ContextExtensions.cs" />
     <Compile Include="BiztalkComponents.Utils\ContextProperties.cs" />
     <Compile Include="BiztalkComponents.Utils\ContextProperty.cs" />
