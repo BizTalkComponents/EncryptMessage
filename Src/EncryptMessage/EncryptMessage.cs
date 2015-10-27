@@ -13,7 +13,7 @@ namespace BizTalkComponents.PipelineComponents.EncryptMessage
 {
     [ComponentCategory(CategoryTypes.CATID_PipelineComponent)]
     [Guid("C9605FDF-FCCC-4246-BA74-4109006F308D")]
-    [ComponentCategory(CategoryTypes.CATID_Encoder)]
+    [ComponentCategory(CategoryTypes.CATID_Any)]
     public partial class EncryptMessage : IComponent, IBaseComponent,
                                         IPersistPropertyBag, IComponentUI
     {
